@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AGY-SOC // Notification Priority Reducer [Java 21 + Advanced DS]</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="soc-body">
+  <!-- Top Classification / Tactical Banner -->
+  <header class="soc-header">
+    <div class="header-left">
+      <div class="soc-logo-badge">
+        <span class="pulse-dot"></span>
+        <span class="logo-title">AGY-SOC // PRIORITY REDUCER</span>
+      </div>
+      <span class="header-tag">DISTRIBUTED INGESTION & DEDUPLICATION ENGINE</span>
+      <span class="tech-stack-pill">JAVA 21 VIRTUAL THREADS (LOOM)</span>
+      <span class="tech-stack-pill">O(1) DLL + HASHMAP</span>
+      <span class="tech-stack-pill">O(log N) MAX-HEAP</span>
+      <span class="tech-stack-pill">O(k) TRIE</span>
+    </div>
+
+    <div class="header-center">
+      <div class="clock-display" id="soc-clock">00:00:00 UTC</div>
+      <div class="ws-status" id="ws-status">
+        <span class="status-indicator online"></span>
+        <span class="status-text" id="ws-status-text">CONNECTING TO NIO ENGINE...</span>
+      </div>
+    </div>
+
+    <div class="header-right">
+      <div class="tactical-actions">
+        <button id="btn-p0" class="btn btn-crimson" title="Inject P0 Cyber Breach (SSH Brute Force / Zero-Day RCE)">
+          <span class="btn-icon">⚡</span> INJECT P0 CRITICAL
+        </button>
+        <button id="btn-whatsapp" class="btn btn-magenta" title="Simulate massive WhatsApp spam barrage (150 duplicates)">
+          <span class="btn-icon">💬</span> WHATSAPP SPAM FLOOD
+        </button>
+        <button id="btn-pause" class="btn btn-dim">
+          <span class="btn-icon">⏸</span> PAUSE
+        </button>
+        <button id="btn-clear" class="btn btn-dim">
+          <span class="btn-icon">🧹</span> PURGE
+        </button>
+        <button id="btn-sound" class="btn btn-dim" title="Toggle Tactical Cyber Audio Feedback">
+          <span class="btn-icon">🔊</span> AUDIO: ON
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Control & Throughput Regulation Strip -->
+  <section class="control-strip">
+    <div class="slider-group">
+      <label for="rate-slider">INGESTION PRESSURE:</label>
+      <input type="range" id="rate-slider" min="50" max="3000" step="50" value="800">
+      <span class="slider-val" id="rate-val">800 msg/s</span>
+    </div>
+    <div class="strip-stats">
+      <span class="stat-item"><span class="lbl">TOTAL INGESTED:</span> <span class="val cyan" id="stat-total-raw">0</span></span>
+      <span class="stat-item"><span class="lbl">COLLAPSED IN O(1):</span> <span class="val magenta" id="stat-total-dedup">0</span></span>
+      <span class="stat-item"><span class="lbl">REDUCER ACTIVE:</span> <span class="val" id="stat-active-nodes">0</span></span>
+      <span class="stat-item"><span class="lbl">HEAP REBALANCING:</span> <span class="val crimson" id="stat-heap-depth">0 nodes</span></span>
+      <span class="stat-item"><span class="lbl">LOOM VIRTUAL THREADS:</span> <span class="val green" id="stat-virtual-threads">0</span></span>
+    </div>
+  </section>
+
+  <!-- Top Real-Time Telemetry HUD & Sparkline Area Chart -->
+  <section class="telemetry-section">
+    <!-- HUD Metric Gauges -->
+    <div class="hud-metrics">
+      <div class="metric-card cyan-card">
+        <div class="metric-header">
+          <span class="metric-label">RAW INGESTION VOLUME</span>
+          <span class="metric-sub">PROJECT LOOM INGRESS</span>
+        </div>
+        <div class="metric-value" id="hud-raw-rate">0 <span class="unit">msg/s</span></div>
+        <div class="metric-spark-meta">BURST CAPACITY: 5,000/s</div>
+      </div>
+
+      <div class="metric-card magenta-card">
+        <div class="metric-header">
+          <span class="metric-label">DEDUPLICATION EFFICIENCY</span>
+          <span class="metric-sub">O(1) HASHMAP + DLL</span>
+        </div>
+        <div class="metric-value" id="hud-dedup-ratio">0.0 <span class="unit">%</span></div>
+        <div class="metric-spark-meta">BANDWIDTH COMPRESSION RATIO</div>
+      </div>
+
+      <div class="metric-card cyan-card">
+        <div class="metric-header">
+          <span class="metric-label">REDUCED OUTPUT FLOW</span>
+          <span class="metric-sub">DISPATCHED TO SOC CONSUMERS</span>
+        </div>
+        <div class="metric-value" id="hud-reduced-rate">0 <span class="unit">msg/s</span></div>
+        <div class="metric-spark-meta">NORMALIZED ALERT CADENCE</div>
+      </div>
+
+      <div class="metric-card crimson-card">
+        <div class="metric-header">
+          <span class="metric-label">MAX-HEAP DYNAMIC DEPTH</span>
+          <span class="metric-sub">HASH-INDEXED O(log N)</span>
+        </div>
+        <div class="metric-value" id="hud-heap-size">0 <span class="unit">alerts</span></div>
+        <div class="metric-spark-meta">REENTRANT LOCK PROTECTED</div>
+      </div>
+    </div>
+
+    <!-- 60-Second Real-Time Canvas Area Sparkline -->
+    <div class="chart-wrapper">
+      <div class="chart-header">
+        <div class="chart-title">
+          <span class="title-accent"></span>
+          REAL-TIME THROUGHPUT DIVERGENCE (PAST 60 SECONDS)
+        </div>
+        <div class="chart-legend">
+          <span class="legend-item"><span class="legend-color cyan-bg"></span> Raw Ingestion (msg/s)</span>
+          <span class="legend-item"><span class="legend-color magenta-bg"></span> Reduced Dispatched (msg/s)</span>
+        </div>
+      </div>
+      <div class="canvas-container">
+        <canvas id="telemetry-canvas"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Split Tactical View -->
+  <main class="soc-main-grid">
+    <!-- LEFT PANEL: Waterfall Raw Logs Stream -->
+    <section class="panel waterfall-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span class="terminal-icon">$_</span>
+          RAW INCOMING NOTIFICATION FIREHOSE (WATERFALL)
+        </div>
+        <div class="panel-controls">
+          <input type="text" id="filter-input" placeholder="FILTER BY ROUTING / IP / SOURCE..." class="soc-input">
+          <button id="btn-autoscroll" class="btn btn-micro active" title="Toggle autoscroll to bottom">SCROLL: ON</button>
+          <button id="btn-clear-logs" class="btn btn-micro">CLEAR</button>
+        </div>
+      </div>
+      <div class="panel-body terminal-body" id="waterfall-container">
+        <!-- Terminal lines injected via JS -->
+      </div>
+      <div class="panel-footer terminal-footer">
+        <span class="footer-note">BUFFER: 100 IN-MEMORY NOTIFICATIONS</span>
+        <span class="footer-latency" id="ws-latency">NIO LATENCY: -- ms</span>
+      </div>
+    </section>
+
+    <!-- RIGHT PANEL: Reduced Priority Matrix (Max-Heap Array) -->
+    <section class="panel priority-panel">
+      <div class="panel-header">
+        <div class="panel-title">
+          <span class="matrix-icon">◈</span>
+          REDUCED PRIORITY MATRIX (MAX-HEAP ROOT ORDERED)
+        </div>
+        <div class="panel-controls">
+          <span class="matrix-badge">FLIP ANIMATION ENGINE: ACTIVE</span>
+          <span class="matrix-badge magenta-badge">O(1) COLLAPSE NOTIFIER</span>
+        </div>
+      </div>
+      <div class="panel-body priority-matrix-body">
+        <div class="matrix-column-headers">
+          <span class="col-hdr col-rank">RANK</span>
+          <span class="col-hdr col-sev">SEVERITY</span>
+          <span class="col-hdr col-dedup">FREQUENCY (O(1))</span>
+          <span class="col-hdr col-score">PRIORITY SCORE</span>
+          <span class="col-hdr col-source">SOURCE & TOPIC ROUTING</span>
+          <span class="col-hdr col-desc">INCIDENT TITLE & PAYLOAD</span>
+          <span class="col-hdr col-time">RECENCY</span>
+        </div>
+        <div class="matrix-rows-container" id="matrix-container">
+          <!-- FLIP animated alert cards rendered dynamically -->
+        </div>
+      </div>
+      <div class="panel-footer matrix-footer">
+        <span class="footer-note">DYNAMIC FORMULA: Score = min(100, BaseWeight + log₂(Frequency) × 3.5)</span>
+        <span class="footer-note">500ms MAGENTA BORDER PULSE ON FREQUENCY INCREMENT</span>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

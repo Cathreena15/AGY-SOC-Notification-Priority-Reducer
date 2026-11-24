@@ -1,0 +1,24 @@
+# Compiled Java files
+bin/
+*.class
+
+# IDE files
+.idea/
+.vscode/
+*.iml
+
+# Operating system files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.log
+
+# Exclude duplicate default-package Java source files
+/AlertNode.java
+/Notification.java
+/O1Reducer.java
+/PriorityMaxHeap.java
+/RuleMetadata.java
+/SimulationServer.java
+/TopicTrie.java
